@@ -50,7 +50,7 @@ php artisan vendor:publish --provider="Sunarc\ImportExcel\ImportExcel\ImportExce
 The MIT Public License. Please see [LICENSE](LICENSE) for more information.
 
 [badge_php]:         https://img.shields.io/badge/PHP-7.3%20to%208.x-orange.svg
-[badge_issues]:      https://img.shields.io/github/issues/sunarctech/excel-import
+[badge_issues]:      https://img.shields.io/github/issues/sunarcrajneesh/excel-import
 [badge_release]:     https://badgen.net/packagist/v/sunarctech/excel-import
 [badge_quality]:     https://img.shields.io/scrutinizer/g/sunarcrajneesh/excel-import.svg
 [badge_downloads]:   https://img.shields.io/packagist/dt/sunarctech/excel-import
