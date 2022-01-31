@@ -17,7 +17,7 @@ Import data using excel in database from a single file without adding any extern
 Via Composer
 
 ```bash
-composer require sunarc/excel-import
+composer require sunarctech/excel-import
 ```
 ## Instructions
 Just install this package and make changes accordingly in configuration file
