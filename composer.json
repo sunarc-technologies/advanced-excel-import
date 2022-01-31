@@ -1,5 +1,5 @@
 {
-    "name": "gulgulia17/import-excel",
+    "name": "sunarc/import-excel",
     "description": "Import the database from a single excel file with the comfort ofGUI interface!",
     "keywords": [
         "sunarc",
@@ -10,9 +10,9 @@
     "type": "library",
     "authors": [
         {
-            "name": "Mudit Gulgulia",
-            "email": "mudit.gulgulia@sunarctechnologies.com",
-            "role": "Developer"
+            "name": "SunArc Technologies",
+            "email": "info@sunarctechnologies.com",
+            "role": "Maintainer"
         }
     ],
     "require": {
