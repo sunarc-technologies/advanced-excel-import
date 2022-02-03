@@ -27,6 +27,9 @@
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
+        "files": [
+            "src/Http/helper.php"
+        ],
         "psr-4": {
             "Sunarc\\ImportExcel\\": "src/"
         }
