@@ -29,10 +29,9 @@ class ImportController extends Controller
         return redirect(route('import.create'))->with('file', $filepath);
     }
 
-    public function create(DatabaseService $databaseService, Filesystem $filesystem)
+    public function create(DatabaseService $databaseService)
     {
         $file = session('file') ?? Cookie::get('file');
-        $filesystem->cleanDirectory(config('ImportExcel.default_path'));
         redirect_if($file, route('import.index'));
         $headers = $this->getExcelHeader($file)->first()->first();
         $tables = $databaseService->tables();
@@ -40,11 +39,15 @@ class ImportController extends Controller
         return view('ImportExcel::import.start-import', compact('tables', 'headers'));
     }
 
-    public function update(Request $request, DatabaseService $databaseService)
+    public function update(Request $request, DatabaseService $databaseService, Filesystem $filesystem)
     {
         $errors = [];
         $this->startImport((array)json_decode($request->finalArray, true), $errors, $databaseService);
-        Cookie::queue(Cookie::forget('file'));
+        if (!count($errors)) {
+            $filesystem->cleanDirectory(config('ImportExcel.default_path'));
+            Cookie::queue(Cookie::forget('file'));
+            redirect(route('import.index'));
+        }
         return back()->withErrors($errors);
     }
 

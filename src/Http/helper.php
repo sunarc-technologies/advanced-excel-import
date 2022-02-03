@@ -5,20 +5,15 @@ if (!function_exists('redirect_if')) {
      * Get an instance of the redirector.
      *
      * @param  bool  $boolean
-     * @param  string|null  $to
-     * @param  int  $status
-     * @param  array  $headers
-     * @param  bool|null  $secure
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * @param  string  $to
      */
-    function redirect_if($boolean, $to = null, $status = 302, $headers = [], $secure = null)
+    function redirect_if($boolean, $to)
     {
-        if ($boolean) {
-            if (is_null($to)) {
-                return app('redirect');
-            }
-
-            return app('redirect')->to($to, $status, $headers, $secure);
+        if (!$boolean) {
+            ob_start();
+            header("Location: $to", false);
+            ob_end_flush();
+            exit();
         }
     }
 }
