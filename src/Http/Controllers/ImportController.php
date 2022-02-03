@@ -12,6 +12,7 @@ use Sunarc\ImportExcel\Services\ExtractHeaders;
 use Sunarc\ImportExcel\Services\DatabaseService;
 use Sunarc\ImportExcel\Services\ExcelToCollection;
 use Sunarc\ImportExcel\Services\Media;
+use Illuminate\Filesystem\Filesystem;
 
 class ImportController extends Controller
 {
@@ -28,9 +29,12 @@ class ImportController extends Controller
         return redirect(route('import.create'))->with('file', $filepath);
     }
 
-    public function create(DatabaseService $databaseService)
+    public function create(DatabaseService $databaseService, Filesystem $filesystem)
     {
-        $headers = $this->getExcelHeader(session('file') ?? Cookie::get('file'))->first()->first();
+        $file = session('file') ?? Cookie::get('file');
+        $filesystem->cleanDirectory(config('ImportExcel.default_path'));
+        redirect_if($file, route('import.index'));
+        $headers = $this->getExcelHeader($file)->first()->first();
         $tables = $databaseService->tables();
 
         return view('ImportExcel::import.start-import', compact('tables', 'headers'));
@@ -40,6 +44,7 @@ class ImportController extends Controller
     {
         $errors = [];
         $this->startImport((array)json_decode($request->finalArray, true), $errors, $databaseService);
+        Cookie::queue(Cookie::forget('file'));
         return back()->withErrors($errors);
     }
 
@@ -89,7 +94,7 @@ class ImportController extends Controller
      * @param \Illuminate\Support\Collection $data
      * @return void
      */
-    public function generateSQLToImport(string $table, \Illuminate\Support\Collection $data,$rules)
+    public function generateSQLToImport(string $table, \Illuminate\Support\Collection $data, $rules)
     {
         if ($data->isNotEmpty()) {
             foreach ($this->readExcelAndConvertToCollection(public_path('sampleimport.xlsx'))->toArray() as $index => $values) {

@@ -4,7 +4,9 @@
     "keywords": [
         "sunarc",
         "sunarctech",
-        "excel-import"
+        "excel-import",
+        "advanced",
+        "advanced-import"
     ],
     "homepage": "https://github.com/sunarcrajneesh/excel-import",
     "license": "MIT",
@@ -27,6 +29,9 @@
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
+        "files": [
+            "src/Http/helper.php"
+        ],
         "psr-4": {
             "Sunarc\\ImportExcel\\": "src/"
         }

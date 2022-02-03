@@ -69,10 +69,6 @@
                                                     id="column_row_{{ $index }}"
                                                     onchange="columnChanged(this,event,'{{ $index }}')">
                                                     <option value="">---</option>
-                                                    @foreach ($tables as $key => $table)
-                                                        <option value="{{ $table }}">{{ $table }}
-                                                        </option>
-                                                    @endforeach
                                                 </select>
                                             </td>
                                         </tr>
@@ -112,7 +108,7 @@
                     $columns.children().not(':first').remove();
                     $.each(data, function(i, v) {
                         $columns.append(
-                            `<option value="${v.Field}">${v.Field}${v.Null != 'NO' ? ' -- This field is required!' : ''}</option>`
+                            `<option value="${v.Field}">${v.Field}${v.Null == 'NO' ? ' -- This field is required!' : ''}</option>`
                         );
                     });
                 }
