@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/45708520/152330764-01e40664-832a-47fd-8141-d2249e2e36a3.png)
+
 # Advance Excel Import 💯
 ##### _GUI Interface to Import_
 
@@ -14,6 +16,14 @@ composer require sunarctech/excel-import
 ```
 ## Instructions
 Just install this package and make changes accordingly in configuration file
+
+
+## Features
+
+- Import an excel file
+- Maintain session lifetime for file to be saved on server via configuration
+- Supports xls,xlsx.csv
+- Choose table name and column on which excel data need to be imported
 
 ## Available Configurations
 ##### Exclude Fields
@@ -46,13 +56,6 @@ Define the lifetime for a import session in minutes.
 ```php
 php artisan vendor:publish --provider="Sunarc\ImportExcel\ImportExcel\ImportExcelServiceProvider" --tag="config"
 ```
-
-## Features
-
-- Import an excel file
-- Maintain session lifetime for file to be saved on server via configuration
-- Supports xls,xlsx.csv
-- Choose table name and column on which excel data need to be imported
 
 ## Requirments
 
@@ -93,8 +96,8 @@ Using **import** as prefix.
 
 We are the leading Software Development Company providing end-to-end IT services & solutions to our esteemed customers in multiple industries and domains for the past 18+ years? Give us a call.
 
-https://sunarctechnologies.com/
-info@sunarctechnologies.com
+https://sunarctechnologies.com/ <br>
+info@sunarctechnologies.com <br>
 +91-8764025209
 
 ## :wrench: Supported Versions
