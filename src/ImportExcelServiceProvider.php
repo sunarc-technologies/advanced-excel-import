@@ -28,7 +28,7 @@ class ImportExcelServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             // Publishing the config.
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('ImportExcel.php'),
+                $this->getConfigFile() => config_path('ImportExcel.php'),
             ], 'config');
         }
     }
@@ -38,17 +38,32 @@ class ImportExcelServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'ImportExcel');
+        $this->mergeConfigFrom(
+            $this->getConfigFile(),
+            'ImportExcel'
+        );
         $this->app->singleton('ImportExcel', function () {
             return new ImportExcel;
         });
     }
 
-    protected function routeConfiguration()
+    /**
+     *
+     * @return array
+     */
+    protected function routeConfiguration(): array
     {
         return [
             'prefix' => 'import',
             'middleware' => ['web'],
         ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getConfigFile(): string
+    {
+        return __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.php';
     }
 }

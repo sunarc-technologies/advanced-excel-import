@@ -4,7 +4,9 @@
     "keywords": [
         "sunarc",
         "sunarctech",
-        "excel-import"
+        "excel-import",
+        "advanced",
+        "advanced-import"
     ],
     "homepage": "https://github.com/sunarcrajneesh/excel-import",
     "license": "MIT",
